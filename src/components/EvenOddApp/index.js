@@ -5,23 +5,22 @@ import './index.css'
 class EvenOddApp extends Component {
   state = {count: 0}
 
+  getRandomNumber = () => Math.ceil(Math.random() * 100)
+
   onChange = () => {
-    const randomNumber = Math.floor(Math.random() * 100) + 1
-    this.setState(prevState => ({count: !prevState.count}))
+    const randomNumber = this.getRandomNumber()
+    this.setState(prevState => ({count: prevState.count + randomNumber}))
   }
 
   render() {
     const {count} = this.state
-    const findResult = count % 2 === 0 ? 'Count is Even' : 'Count is Odd'
+    const findResult = count % 2 === 0 ? 'Even' : 'Odd'
 
     return (
       <div className="bg-container">
         <div className="content-container">
-          <h1 className="heading">
-            Count
-            <span className="count"> {count}</span>
-          </h1>
-          <p className="description">{findResult}</p>
+          <h1 className="heading">Count {count}</h1>
+          <p className="description">Count is {findResult}</p>
           <button className="button" type="button" onClick={this.onChange}>
             Increment
           </button>
